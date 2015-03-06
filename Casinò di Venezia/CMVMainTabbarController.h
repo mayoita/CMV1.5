@@ -3,7 +3,7 @@
 //  Casinò di Venezia
 //
 //  Created by Massimo Moro on 24/10/13.
-//  Copyright (c) 2013 Casinò di Venezia SPA. All rights reserved.
+//  Copyright (c) 2013 Casinò di Venezia SPA.  All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
