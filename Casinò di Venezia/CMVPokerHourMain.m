@@ -40,7 +40,7 @@
     self.contactUs.layer.masksToBounds = YES;
     radius = 130;
     bubbleRadius = 40;
-    self.noteGenerali.attributedText= [self formatTextForPokerHour];
+    self.noteGenerali.attributedText= [self formatTextForPokerHour:0];
    
     
     // Do any additional setup after loading the view.
@@ -167,21 +167,26 @@
     
 }
 
--(NSMutableAttributedString *)formatTextForPokerHour {
+-(NSMutableAttributedString *)formatTextForPokerHour:(int)indice {
     NSMutableAttributedString *formattedText = [[NSMutableAttributedString alloc] init];
  
     NSDictionary *firstAttributes = [self firstAttributes];
     NSDictionary *secondAttributes = [self secondAttributes];
     
     NSArray *arrayText =_dataSourceItemsWithRules[@"TournamentsRules"];
-    if (![_dataSourceItems[0][2]  isEqual: @""]) {
-        NSString *textNote=[NSString stringWithFormat:@"%@%@",_dataSourceItems[self.currentItem][indexForNotes],@"\n\n"];;
-        NSInteger _stringLengthText=[textNote length];
-        NSMutableAttributedString *attMyString2=[[NSMutableAttributedString alloc] initWithString:textNote];
-        [attMyString2 setAttributes:secondAttributes range:NSMakeRange(0, _stringLengthText)];
-        
-        [formattedText appendAttributedString:attMyString2];
+    NSArray *obj;
+    for (obj in _dataSourceItems[indice][2]) {
+        if (![obj[8]  isEqual: @""]) {
+            NSString *textNote=[NSString stringWithFormat:@"%@%@",obj[8],@"\n\n"];;
+            NSInteger _stringLengthText=[textNote length];
+            NSMutableAttributedString *attMyString2=[[NSMutableAttributedString alloc] initWithString:textNote];
+            [attMyString2 setAttributes:secondAttributes range:NSMakeRange(0, _stringLengthText)];
+            
+            [formattedText appendAttributedString:attMyString2];
+        }
     }
+    
+    
     
     for (int i=0; i < arrayText.count; i++) {
             
@@ -259,8 +264,8 @@
         NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:self.collectionView.contentOffset];
         self.currentItem = indexPath.row ;
         [self.tableView reloadData];
-
-        self.noteGenerali.attributedText= [self formatTextForPokerHour];
+        NSLog(@"index: %@", indexPath);
+        self.noteGenerali.attributedText= [self formatTextForPokerHour:indexPath.row];
         if (self.collectionView.contentOffset.x < self.collectionView.frame.size.width)  {
             self.arrowDx.hidden=YES;
         } else {
@@ -319,7 +324,7 @@
      self.nomeTorneo.text=_dataSourceItemsWithRules[@"TournamentName"];
      [self colorArrowAndlabel];
     self.arrowDx.hidden = YES;
-    self.noteGenerali.attributedText= [self formatTextForPokerHour];
+    self.noteGenerali.attributedText= [self formatTextForPokerHour:0];
     [self.tableView reloadData];
    
 
@@ -377,7 +382,7 @@
     self.nomeTorneo.text=_dataSourceItemsWithRules[@"TournamentName"];
     [self colorArrowAndlabel];
     self.arrowDx.hidden = YES;
-    self.noteGenerali.attributedText= [self formatTextForPokerHour];
+    self.noteGenerali.attributedText= [self formatTextForPokerHour:0];
     [self.tableView reloadData];
     NSIndexPath *myIndex = [NSIndexPath indexPathForItem:0 inSection:0];
     if (self.dataSourceItems ) {
