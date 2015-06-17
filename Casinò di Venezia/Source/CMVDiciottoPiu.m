@@ -48,15 +48,17 @@
         self.textColor = [UIColor whiteColor];
         
         self.minimumScaleFactor = 0.5f;
-        if (iPHONE) {
+       
+     //   if (iPHONE) {
             self.font = [UIFont fontWithName:@"Arial" size:8];
             self.frame=CGRectMake(61, 26, 250, 21);
             self.numberOfLines = 0;
-        } else {
-            self.numberOfLines = 1;
-            self.font = [UIFont fontWithName:@"Arial" size:13];
-            self.frame=CGRectMake(72, 25, 750, 21);
-        }
+        
+//        } else {
+//            self.numberOfLines = 1;
+//            self.font = [UIFont fontWithName:@"Arial" size:13];
+//            self.frame=CGRectMake(72, 25, 750, 21);
+//        }
        
         self.adjustsFontSizeToFitWidth = YES;
         self.linkAttributes = [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:YES] forKey:(__bridge NSString *)kCTUnderlineStyleAttributeName];
@@ -72,6 +74,7 @@
     
     return self;
 }
+
 
 
 

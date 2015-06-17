@@ -7,7 +7,7 @@
 //
 
 #import "CMVFacebookLike.h"
-#import <FacebookSDK/FacebookSDK.h>
+#import <FBSDKShareKit/FBSDKLikeControl.h>
 #import "UIViewController+ECSlidingViewController.h"
 #import "CMVGreenButton.h"
 #import "CMVAppDelegate.h"
@@ -18,7 +18,7 @@
 
 @interface CMVFacebookLike ()
 @property (weak, nonatomic) IBOutlet CMVGreenButton *getTicket;
-@property(strong, nonatomic)FBLikeControl *myLike;
+@property(strong, nonatomic)FBSDKLikeControl *myLike;
 
 
 
@@ -51,10 +51,10 @@
     //self.getTicket.enabled = NO;
     // Do any additional setup after loading the view.
   //  [FBSettings enableBetaFeature:FBBetaFeaturesLikeButton];
-    [FBSettings enablePlatformCompatibility:NO];
+   // [FBSDKSettings enablePlatformCompatibility:NO];
     
-    FBLikeControl *likeView = [[FBLikeControl alloc] init];
-    likeView.likeControlStyle = FBLikeControlStyleStandard;
+    FBSDKLikeControl *likeView = [[FBSDKLikeControl alloc] init];
+    likeView.likeControlStyle = FBSDKLikeControlStyleStandard;
     UILabel *likeLabel = [[likeView subviews] objectAtIndex:1];
     likeLabel.textColor = [UIColor whiteColor];
     if (iPHONE) {
@@ -65,8 +65,8 @@
         likeLabel.font = GOTHAM_BOOK(20);
     }
   
-    likeView.likeControlAuxiliaryPosition = FBLikeControlAuxiliaryPositionBottom;
-    likeView.likeControlHorizontalAlignment =FBLikeControlHorizontalAlignmentCenter;
+    likeView.likeControlAuxiliaryPosition = FBSDKLikeControlAuxiliaryPositionBottom;
+    likeView.likeControlHorizontalAlignment =FBSDKLikeControlHorizontalAlignmentCenter;
     likeView.center = self.view.center;
     
     likeLabel.textColor = [UIColor whiteColor];

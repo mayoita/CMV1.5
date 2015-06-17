@@ -20,9 +20,12 @@
 #import "CMVCheckWeekDay.h"
 #import "CMVArrowChat.h"
 #import "GAIDictionaryBuilder.h"
+#import "KGModal.h"
+
 
 
 #import <Parse/Parse.h>
+#import "UIViewController+ECSlidingViewController.h"
 
 #define VE 0
 #define CN 1
@@ -44,7 +47,9 @@
 @property (weak, nonatomic) IBOutlet UIImageView *logo;
 @property (strong,nonatomic)CRMotionView *myMotionView;
 
+@property (weak, nonatomic) IBOutlet UIImageView *homeLike;
 
+@property (weak, nonatomic) IBOutlet UIImageView *arrowLike;
 
 
 
@@ -116,20 +121,130 @@ PFObject *storageFestivity;
 //    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
 //        [self addLabelMarquee];
 //    }
+    [KGModal sharedInstance].closeButtonType = KGModalCloseButtonTypeLeft;
+    [self showAds];
     
+}
+
+-(void)showAds {
+    PFQuery *queryAds = [PFQuery queryWithClassName:@"EventAds"];
+    // If no objects are loaded in memory, we look to the cache first to fill the table
+    // and then subsequently do a query against the network. https://parse.com/docs/ios_guide#queries-caching/iOS
+    //BOOL isInCache = [query hasCachedResult];
+    //query.cachePolicy = kPFCachePolicyCacheElseNetwork;
+    [queryAds setCachePolicy:kPFCachePolicyNetworkOnly];
+    if ([[UIApplication sharedApplication].delegate performSelector:@selector(isParseReachable)]) {
+        [queryAds getObjectInBackgroundWithId:@"kdE0tG1KGF" block:^(PFObject *myObj, NSError *error) {
+            if (!error) {
+                PFFile *imageFile=myObj[@"image"];
+                BOOL visible = [myObj[@"visible"] boolValue];
+                if (visible) {
+                    if (([imageFile isKindOfClass:[NSNull class]]) || (imageFile == nil)) {
+                        
+                        
+                    } else {
+                        [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+                            
+                            [self showAction:data];
+                        }    ];
+                    }
+                }
+                
+            }
+            
+            
+            
+        }];
+    }
+ 
+}
+- (void)showAction:(NSData *)myData{
+    UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 260, 430)];
+    
+    //CGRect welcomeLabelRect = contentView.bounds;
+    UIImageView *myAds = [[UIImageView alloc] initWithFrame:contentView.bounds];
+    myAds.backgroundColor = [UIColor whiteColor];
+    myAds.image = [UIImage imageWithData:myData];
+//    welcomeLabelRect.origin.y = 20;
+//    welcomeLabelRect.size.height = 20;
+//    UIFont *welcomeLabelFont = [UIFont boldSystemFontOfSize:17];
+//    UILabel *welcomeLabel = [[UILabel alloc] initWithFrame:welcomeLabelRect];
+//    welcomeLabel.text = @"Welcome to KGModal!";
+//    welcomeLabel.font = welcomeLabelFont;
+//    welcomeLabel.textColor = [UIColor whiteColor];
+//    welcomeLabel.textAlignment = NSTextAlignmentCenter;
+//    welcomeLabel.backgroundColor = [UIColor clearColor];
+//    welcomeLabel.shadowColor = [UIColor blackColor];
+//    welcomeLabel.shadowOffset = CGSizeMake(0, 1);
+    [contentView addSubview:myAds];
+    
+//    CGRect infoLabelRect = CGRectInset(contentView.bounds, 5, 5);
+//    infoLabelRect.origin.y = CGRectGetMaxY(welcomeLabelRect)+5;
+//    infoLabelRect.size.height -= CGRectGetMinY(infoLabelRect) + 50;
+//    UILabel *infoLabel = [[UILabel alloc] initWithFrame:infoLabelRect];
+//    infoLabel.text = @"KGModal is an easy drop in control that allows you to display any view "
+//    "in a modal popup. The modal will automatically scale to fit the content view "
+//    "and center it on screen with nice animations!";
+//    infoLabel.numberOfLines = 6;
+//    infoLabel.textColor = [UIColor whiteColor];
+//    infoLabel.textAlignment = NSTextAlignmentCenter;
+//    infoLabel.backgroundColor = [UIColor clearColor];
+//    infoLabel.shadowColor = [UIColor blackColor];
+//    infoLabel.shadowOffset = CGSizeMake(0, 1);
+//    [contentView addSubview:infoLabel];
+//    
+//    CGFloat btnY = CGRectGetMaxY(infoLabelRect)+5;
+//    CGFloat btnH = CGRectGetMaxY(contentView.frame)-5 - btnY;
+//    UIButton *btn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+//    btn.frame = CGRectMake(infoLabelRect.origin.x, btnY, infoLabelRect.size.width, btnH);
+//    [btn setTitle:@"Close Button Right" forState:UIControlStateNormal];
+//    [btn addTarget:self action:@selector(changeCloseButtonType:) forControlEvents:UIControlEventTouchUpInside];
+//    [contentView addSubview:btn];
+    
+    //    [[KGModal sharedInstance] setCloseButtonLocation:KGModalCloseButtonLocationRight];
+    [[KGModal sharedInstance] showWithContentView:contentView andAnimated:YES];
 }
 
 -(void)setOffHelper {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 
-    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"contactUs"]) {
-        self.chatWithUs.hidden = YES;
-        self.arrowChat.hidden = YES;
-        [userDefaults setBool:NO forKey:@"contactUs"];
+    if ([userDefaults objectForKey:@"helper"]) {
+        int a =[[NSUserDefaults standardUserDefaults] integerForKey:@"helper"];
+        if ((int)[[NSUserDefaults standardUserDefaults] integerForKey:@"helper"] < 5) {
+            NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay  fromDate:[NSDate date]];
+            NSInteger day = [components day];
+            if ([userDefaults integerForKey:@"today"] == day) {
+                self.chatWithUs.hidden = YES;
+                self.arrowChat.hidden = YES;
+                self.homeLike.hidden = YES;
+                self.arrowLike.hidden = YES;
+            } else {
+                self.chatWithUs.hidden = NO;
+                self.arrowChat.hidden = NO;
+                self.homeLike.hidden = NO;
+                self.arrowLike.hidden = NO;
+                
+            }
+        } else {
+         //   if ([userDefaults objectForKey:@"today"] == [NSDate date]) {
+          
+                self.chatWithUs.hidden = YES;
+                self.arrowChat.hidden = YES;
+                self.homeLike.hidden = YES;
+                self.arrowLike.hidden = YES;
+          //  }
+           
+        }
+
         [userDefaults synchronize];
     } else {
-        [userDefaults setBool:YES forKey:@"contactUs"];
-       [userDefaults synchronize];
+        NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay  fromDate:[NSDate date]];
+        NSInteger day = [components day];
+      
+        [userDefaults setInteger:0 forKey:@"helper"];
+        [userDefaults setInteger:day forKey:@"today"];
+        [userDefaults synchronize];
+        
     }
     
 }
@@ -138,6 +253,7 @@ PFObject *storageFestivity;
     [super viewDidAppear:animated];
      //[self refreshLabelMarquee];
     [self animateChat];
+    [self animateLike];
     
     NSString *value=@"";
     if ([CMVDataClass getInstance].location == VENEZIA) {
@@ -171,6 +287,26 @@ PFObject *storageFestivity;
                           ];
                          
                      }];
+}
+
+-(void)animateLike {
+    [UIView animateWithDuration:4 delay:0 usingSpringWithDamping:0.05 initialSpringVelocity:0.3 options:UIViewAnimationOptionCurveEaseInOut animations:^(void) {
+        
+
+        self.arrowLike.center=CGPointMake(self.arrowLike.center.x - 5, self.arrowLike.center.y);
+    }
+                     completion:^(BOOL finished){
+                         [UIView animateWithDuration:1.0 animations:^(void) {
+                             self.homeLike.alpha = 0.0;
+                         }
+                          ];
+                         [UIView animateWithDuration:1.0 animations:^(void) {
+                             self.arrowLike.alpha = 0.0;
+                         }
+                          ];
+                         
+                     }];
+    
 }
 
 -(void)loadFestivity:(NSString *)todayOpen andVSP:(NSString *)vsp{
@@ -363,7 +499,7 @@ PFObject *storageFestivity;
 }
 
 - (IBAction)openMenu:(id)sender {
-   // [self.slidingViewController anchorTopViewTo:ECRight];
+    [self.slidingViewController anchorTopViewToRightAnimated:YES];
 }
 
 

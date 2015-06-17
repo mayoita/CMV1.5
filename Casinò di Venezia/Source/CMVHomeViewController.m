@@ -17,6 +17,7 @@
 #import "CMVGradientForNews.h"
 #import "CMVArrowChat.h"
 
+
 #define VE 0
 #define CN 1
 
@@ -60,7 +61,7 @@ PFObject *storageFestivity;
     self.site=[CMVDataClass getInstance];
     
     
-    
+ 
     
     UIImage *myGradient = [UIImage imageNamed:@"JackpotColorPattern"];
     self.labelJackpot.textColor   = [UIColor colorWithPatternImage:myGradient];

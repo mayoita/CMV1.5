@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="MRC-3S-e6z">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="MRC-3S-e6z">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -1225,12 +1227,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HomeBackgroundVenezia.png" translatesAutoresizingMaskIntoConstraints="NO" id="xUM-P9-9RV">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="HomeBackgroundVenezia.png" translatesAutoresizingMaskIntoConstraints="NO" id="xUM-P9-9RV">
+                                <rect key="frame" x="0.0" y="0.0" width="612" height="600"/>
                                 <variation key="widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="0.0" y="0.0" width="400" height="551"/>
                                 </variation>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bpv-ZK-AKd" customClass="CMVMenuButton">
+                                <rect key="frame" x="10" y="25" width="44" height="33"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="33" id="3xM-Ws-2g8"/>
+                                    <constraint firstAttribute="width" constant="44" id="dW5-4f-zfl"/>
+                                </constraints>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="openMenu:" destination="kot-s8-WL2" eventType="touchUpInside" id="BMX-tp-rg5"/>
+                                    <action selector="openMenu:" destination="dXa-HM-TBW" eventType="touchUpInside" id="LMQ-fI-kXW"/>
+                                    <action selector="openMenu:" destination="IEg-nx-Bgy" eventType="touchUpInside" id="eH5-hf-riv"/>
+                                    <action selector="openMenu:" destination="vLv-fP-NQn" eventType="touchUpInside" id="fR2-Gw-DZO"/>
+                                </connections>
+                            </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="JACKPOT" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="vct-Bb-BeL">
                                 <rect key="frame" x="16" y="442" width="568" height="45"/>
                                 <constraints>
@@ -1254,7 +1272,7 @@
                                 </variation>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="18+" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NEl-Ie-6zH">
-                                <rect key="frame" x="6" y="20" width="30" height="21"/>
+                                <rect key="frame" x="37" y="23" width="30" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="Jc0-xZ-NQ2"/>
                                     <constraint firstAttribute="height" constant="21" id="zdE-fi-knW"/>
@@ -1264,7 +1282,7 @@
                                 <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UNDER 18 ARE NOT ALLOWED TO GAMBLE. GAMBLING CAN BE PATHOLOGICALLY ADDICTIVE." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" preferredMaxLayoutWidth="242" translatesAutoresizingMaskIntoConstraints="NO" id="0s3-iF-eWE" customClass="CMVDiciottoPiu">
-                                <rect key="frame" x="44" y="20" width="510" height="21"/>
+                                <rect key="frame" x="68" y="23" width="498" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="hDW-XR-dxg"/>
                                 </constraints>
@@ -1344,52 +1362,102 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="highlightedColor" red="1" green="0.18657407407407409" blue="0.096759259259259253" alpha="1" colorSpace="calibratedRGB"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HomeLike.png" translatesAutoresizingMaskIntoConstraints="NO" id="KJU-MW-zak">
+                                <rect key="frame" x="0.0" y="249" width="240" height="54"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="54" id="QlZ-ka-upa"/>
+                                    <constraint firstAttribute="width" constant="240" id="mfD-l1-UXm"/>
+                                    <constraint firstAttribute="width" constant="240" id="s8u-1g-D0k"/>
+                                    <constraint firstAttribute="height" constant="54" id="xOc-NS-Kqk"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="s8u-1g-D0k"/>
+                                        <exclude reference="xOc-NS-Kqk"/>
+                                    </mask>
+                                </variation>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FrecciaHome.png" translatesAutoresizingMaskIntoConstraints="NO" id="LDV-lD-X7g">
+                                <rect key="frame" x="10" y="255" width="57" height="42"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="42" id="yQ8-NW-Ugi"/>
+                                    <constraint firstAttribute="width" constant="57" id="yeh-tg-FpG"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="Bpv-ZK-AKd" firstAttribute="top" secondItem="x6J-O4-Yic" secondAttribute="bottom" constant="5" id="14M-rb-2uS"/>
                             <constraint firstItem="Mrd-uc-uWz" firstAttribute="leading" secondItem="P8r-N9-fHZ" secondAttribute="leadingMargin" id="1b7-8e-uJC"/>
                             <constraint firstItem="vct-Bb-BeL" firstAttribute="leading" secondItem="P8r-N9-fHZ" secondAttribute="leadingMargin" id="2Iq-6S-TSv"/>
                             <constraint firstItem="Bft-2F-Tmd" firstAttribute="top" secondItem="eE1-0l-gXF" secondAttribute="bottom" constant="2" id="2KW-lm-OmF"/>
+                            <constraint firstItem="KJU-MW-zak" firstAttribute="leading" secondItem="P8r-N9-fHZ" secondAttribute="leadingMargin" id="2aK-6f-gp1"/>
                             <constraint firstItem="xUM-P9-9RV" firstAttribute="top" secondItem="P8r-N9-fHZ" secondAttribute="top" id="45H-Hg-bC7"/>
                             <constraint firstItem="5ex-qK-gsH" firstAttribute="leading" secondItem="P8r-N9-fHZ" secondAttribute="leading" constant="16" id="4DV-ki-9tu"/>
                             <constraint firstItem="cbg-jb-e0h" firstAttribute="top" secondItem="xUM-P9-9RV" secondAttribute="bottom" constant="-49" id="4Li-sg-sjY"/>
-                            <constraint firstItem="0s3-iF-eWE" firstAttribute="top" secondItem="x6J-O4-Yic" secondAttribute="bottom" id="5P8-wU-las"/>
+                            <constraint firstItem="0s3-iF-eWE" firstAttribute="top" secondItem="x6J-O4-Yic" secondAttribute="bottom" constant="3" id="5P8-wU-las"/>
                             <constraint firstItem="5ex-qK-gsH" firstAttribute="top" secondItem="eE1-0l-gXF" secondAttribute="bottom" constant="22" id="5dF-Tw-L9b"/>
                             <constraint firstItem="Bft-2F-Tmd" firstAttribute="trailing" secondItem="8ta-mu-F1y" secondAttribute="trailing" id="64t-4I-GQ6"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ZHj-wZ-Wgl" secondAttribute="trailing" constant="20" id="86u-VO-em1"/>
+                            <constraint firstAttribute="centerY" secondItem="LDV-lD-X7g" secondAttribute="centerY" constant="-0.5" id="9Mz-SM-ece"/>
                             <constraint firstAttribute="trailing" secondItem="eE1-0l-gXF" secondAttribute="trailing" constant="10" id="D0h-PQ-klr"/>
                             <constraint firstItem="cbg-jb-e0h" firstAttribute="top" secondItem="Mrd-uc-uWz" secondAttribute="bottom" constant="10" id="KEy-nO-Cfs"/>
+                            <constraint firstItem="KJU-MW-zak" firstAttribute="centerX" secondItem="xUM-P9-9RV" secondAttribute="centerX" constant="-170" id="NRY-Ex-rzH"/>
                             <constraint firstItem="eE1-0l-gXF" firstAttribute="top" secondItem="x6J-O4-Yic" secondAttribute="bottom" id="NRv-Hh-GhG"/>
                             <constraint firstItem="mFM-MS-SjW" firstAttribute="top" secondItem="eE1-0l-gXF" secondAttribute="bottom" constant="50" id="O0x-Bo-dFe"/>
                             <constraint firstItem="eE1-0l-gXF" firstAttribute="trailing" secondItem="8ta-mu-F1y" secondAttribute="trailing" id="QB8-OD-SNF"/>
                             <constraint firstItem="8ta-mu-F1y" firstAttribute="top" secondItem="x6J-O4-Yic" secondAttribute="bottom" constant="95" id="QIZ-rq-Pdz"/>
+                            <constraint firstItem="Bpv-ZK-AKd" firstAttribute="leading" secondItem="P8r-N9-fHZ" secondAttribute="leadingMargin" constant="-6" id="S3W-ZI-TWi"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="0s3-iF-eWE" secondAttribute="trailing" constant="18" id="SS9-H5-zjA"/>
                             <constraint firstItem="8ta-mu-F1y" firstAttribute="leading" secondItem="ZHj-wZ-Wgl" secondAttribute="trailing" constant="8" symbolic="YES" id="Sio-7j-pTS"/>
+                            <constraint firstItem="KJU-MW-zak" firstAttribute="centerY" secondItem="xUM-P9-9RV" secondAttribute="centerY" constant="-24" id="T21-xB-86Y"/>
+                            <constraint firstItem="KJU-MW-zak" firstAttribute="leading" secondItem="P8r-N9-fHZ" secondAttribute="leadingMargin" constant="-16" id="TLV-cy-5zE"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Mrd-uc-uWz" secondAttribute="trailing" id="Tp4-ea-ye9"/>
-                            <constraint firstItem="0s3-iF-eWE" firstAttribute="leading" secondItem="NEl-Ie-6zH" secondAttribute="trailing" constant="8" id="aIV-YR-yuh"/>
-                            <constraint firstItem="NEl-Ie-6zH" firstAttribute="leading" secondItem="P8r-N9-fHZ" secondAttribute="leading" constant="6" id="bD0-ot-B40"/>
+                            <constraint firstItem="0s3-iF-eWE" firstAttribute="leading" secondItem="NEl-Ie-6zH" secondAttribute="trailing" constant="1" id="aIV-YR-yuh"/>
+                            <constraint firstItem="LDV-lD-X7g" firstAttribute="leading" secondItem="P8r-N9-fHZ" secondAttribute="leadingMargin" constant="-6" id="ahl-xl-uoZ"/>
+                            <constraint firstItem="NEl-Ie-6zH" firstAttribute="leading" secondItem="P8r-N9-fHZ" secondAttribute="leading" constant="37" id="bD0-ot-B40"/>
+                            <constraint firstItem="Bpv-ZK-AKd" firstAttribute="top" secondItem="x6J-O4-Yic" secondAttribute="bottom" constant="5" id="cDX-ju-Ff4"/>
                             <constraint firstAttribute="trailing" secondItem="5ex-qK-gsH" secondAttribute="trailing" constant="16" id="ePu-Ar-OgY"/>
+                            <constraint firstAttribute="centerY" secondItem="KJU-MW-zak" secondAttribute="centerY" constant="-0.5" id="eWF-8F-HDu"/>
+                            <constraint firstItem="Bpv-ZK-AKd" firstAttribute="firstBaseline" secondItem="0s3-iF-eWE" secondAttribute="baseline" id="ezZ-e1-Qkb"/>
                             <constraint firstItem="vct-Bb-BeL" firstAttribute="trailing" secondItem="P8r-N9-fHZ" secondAttribute="trailingMargin" id="f4Z-DX-MjQ"/>
                             <constraint firstAttribute="trailing" secondItem="mFM-MS-SjW" secondAttribute="trailing" constant="16" id="fM9-Gb-6EU"/>
-                            <constraint firstItem="NEl-Ie-6zH" firstAttribute="top" secondItem="x6J-O4-Yic" secondAttribute="bottom" id="h2t-Lk-xt8"/>
+                            <constraint firstItem="NEl-Ie-6zH" firstAttribute="top" secondItem="x6J-O4-Yic" secondAttribute="bottom" constant="3" id="h2t-Lk-xt8"/>
+                            <constraint firstItem="KJU-MW-zak" firstAttribute="leading" secondItem="xUM-P9-9RV" secondAttribute="leading" id="iab-se-bgg"/>
                             <constraint firstItem="Mrd-uc-uWz" firstAttribute="top" secondItem="vct-Bb-BeL" secondAttribute="bottom" constant="33" id="jpx-GU-Nuh"/>
                             <constraint firstAttribute="trailing" secondItem="xUM-P9-9RV" secondAttribute="trailing" id="qCW-gb-O02"/>
                             <constraint firstItem="cbg-jb-e0h" firstAttribute="top" secondItem="ZHj-wZ-Wgl" secondAttribute="bottom" constant="23" id="s0H-SY-iwM"/>
                             <constraint firstItem="mFM-MS-SjW" firstAttribute="leading" secondItem="P8r-N9-fHZ" secondAttribute="leading" constant="16" id="sLs-yJ-GrE"/>
-                            <constraint firstItem="eE1-0l-gXF" firstAttribute="leading" secondItem="0s3-iF-eWE" secondAttribute="trailing" constant="6" id="tLN-6e-MiL"/>
+                            <constraint firstItem="KJU-MW-zak" firstAttribute="top" secondItem="P8r-N9-fHZ" secondAttribute="top" constant="249" id="sRO-Ax-r33"/>
+                            <constraint firstItem="Bpv-ZK-AKd" firstAttribute="leading" secondItem="P8r-N9-fHZ" secondAttribute="leadingMargin" constant="-6" id="sWw-LF-R3R"/>
+                            <constraint firstItem="eE1-0l-gXF" firstAttribute="leading" secondItem="0s3-iF-eWE" secondAttribute="trailing" constant="-22" id="tLN-6e-MiL"/>
                             <constraint firstItem="ZHj-wZ-Wgl" firstAttribute="leading" secondItem="P8r-N9-fHZ" secondAttribute="leading" constant="20" id="tx8-9d-Zqs"/>
+                            <constraint firstItem="KJU-MW-zak" firstAttribute="centerY" secondItem="xUM-P9-9RV" secondAttribute="centerY" id="xHh-Xu-4bb"/>
                             <constraint firstItem="xUM-P9-9RV" firstAttribute="leading" secondItem="P8r-N9-fHZ" secondAttribute="leading" id="zRw-GM-5ps"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="S3W-ZI-TWi"/>
+                                <exclude reference="cDX-ju-Ff4"/>
+                                <exclude reference="ezZ-e1-Qkb"/>
+                                <exclude reference="2aK-6f-gp1"/>
+                                <exclude reference="NRY-Ex-rzH"/>
+                                <exclude reference="T21-xB-86Y"/>
+                                <exclude reference="iab-se-bgg"/>
+                                <exclude reference="sRO-Ax-r33"/>
+                                <exclude reference="xHh-Xu-4bb"/>
                                 <exclude reference="Sio-7j-pTS"/>
+                                <exclude reference="tLN-6e-MiL"/>
                             </mask>
                         </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="HOME" id="XK1-PS-xIM"/>
                     <connections>
                         <outlet property="arrowChat" destination="Bft-2F-Tmd" id="8ee-De-3ZC"/>
+                        <outlet property="arrowLike" destination="LDV-lD-X7g" id="fP9-41-UqO"/>
                         <outlet property="backgroundImage" destination="xUM-P9-9RV" id="Aj3-Hg-nUN"/>
                         <outlet property="chatWithUs" destination="8ta-mu-F1y" id="Ad7-je-lIq"/>
+                        <outlet property="homeLike" destination="KJU-MW-zak" id="X03-Am-byh"/>
                         <outlet property="jackpot" destination="ZHj-wZ-Wgl" id="YlL-dg-AsD"/>
                         <outlet property="labelJackpot" destination="vct-Bb-BeL" id="jeN-tX-xG1"/>
                         <outlet property="logo" destination="5ex-qK-gsH" id="WDj-OU-hWI"/>
@@ -3421,8 +3489,8 @@ ENTRY ALLOWED TO ADULTS OVER THE AGE OF EIGHTEEN. ONLY ON PRESENTATION OF A VALI
                                                         <fragment content="MENU">
                                                             <attributes>
                                                                 <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <font key="NSFont" size="24" name="Gotham-Light"/>
-                                                                <font key="NSOriginalFont" size="24" name="Gotham-Light"/>
+                                                                <font key="NSFont" metaFont="system" size="24"/>
+                                                                <font key="NSOriginalFont" metaFont="system" size="24"/>
                                                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
                                                             </attributes>
                                                         </fragment>
@@ -3489,7 +3557,7 @@ ENTRY ALLOWED TO ADULTS OVER THE AGE OF EIGHTEEN. ONLY ON PRESENTATION OF A VALI
                                                         <fragment content="LOG IN">
                                                             <attributes>
                                                                 <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <font key="NSFont" size="18" name="Gotham-Light"/>
+                                                                <font key="NSFont" metaFont="system" size="18"/>
                                                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
                                                             </attributes>
                                                         </fragment>
@@ -3526,7 +3594,7 @@ ENTRY ALLOWED TO ADULTS OVER THE AGE OF EIGHTEEN. ONLY ON PRESENTATION OF A VALI
                                                         <fragment content="NEWSLETTER">
                                                             <attributes>
                                                                 <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <font key="NSFont" size="18" name="Gotham-Light"/>
+                                                                <font key="NSFont" metaFont="system" size="18"/>
                                                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="truncatingTail" baseWritingDirection="natural"/>
                                                             </attributes>
                                                         </fragment>
@@ -3601,7 +3669,7 @@ ENTRY ALLOWED TO ADULTS OVER THE AGE OF EIGHTEEN. ONLY ON PRESENTATION OF A VALI
                                                         <fragment content="CASINÒ MOBILE">
                                                             <attributes>
                                                                 <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <font key="NSFont" size="18" name="Gotham-Light"/>
+                                                                <font key="NSFont" metaFont="system" size="18"/>
                                                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
                                                             </attributes>
                                                         </fragment>
@@ -3632,7 +3700,7 @@ ENTRY ALLOWED TO ADULTS OVER THE AGE OF EIGHTEEN. ONLY ON PRESENTATION OF A VALI
                                                         <fragment content="VPC">
                                                             <attributes>
                                                                 <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <font key="NSFont" size="18" name="Gotham-Light"/>
+                                                                <font key="NSFont" metaFont="system" size="18"/>
                                                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
                                                             </attributes>
                                                         </fragment>
@@ -5494,9 +5562,11 @@ ENTRY ALLOWED TO ADULTS OVER THE AGE OF EIGHTEEN. ONLY ON PRESENTATION OF A VALI
         <image name="Badge.png" width="31" height="32"/>
         <image name="CasinoLabel.png" width="516" height="53"/>
         <image name="Directions" width="30" height="30"/>
+        <image name="FrecciaHome.png" width="101" height="58"/>
         <image name="Game_detail_background_long.png" width="640" height="1136"/>
         <image name="HomeBackgroundVenezia.png" width="640" height="1136"/>
         <image name="HomeCasinoLogo.png" width="516" height="53"/>
+        <image name="HomeLike.png" width="502" height="101"/>
         <image name="LogInImage.png" width="640" height="1136"/>
         <image name="MainTabBar.png" width="5" height="49"/>
         <image name="MapRedButton.png" width="618" height="76"/>

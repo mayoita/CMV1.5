@@ -13,6 +13,9 @@
 #import "MySignUpViewController.h"
 #import <Parse/Parse.h>
 #import "CMVGreenButton.h"
+#import <FBSDKCoreKit/FBSDKGraphRequest.h>
+#import <ParseFacebookUtilsV4/PFFacebookUtils.h>
+
 
 
 @interface CMVLogInViewController ()
@@ -100,8 +103,8 @@ NSString *myName;
             self.welcomeLabel.text =[NSString stringWithFormat:NSLocalizedString(@"Welcome\n ", nil)];
             
             // Create Facebook Request for user's details
-            FBRequest *request = [FBRequest requestForMe];
-            [request startWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+            FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:nil];
+            [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
                 // This is an asynchronous method. When Facebook responds, if there are no errors, we'll update the Welcome label.
                 if (!error) {
                     // Parse the data received

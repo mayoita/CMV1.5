@@ -21,6 +21,10 @@
 #import "CMVMainTabbarController.h"
 #import "Helpshift.h"
 #import "GAI.h"
+#import <FBSDKCoreKit/FBSDKApplicationDelegate.h>
+#import <FBSDKCoreKit/FBSDKAppEvents.h>
+#import <ParseFacebookUtilsV4/PFFacebookUtils.h>
+#import <ParseCrashReporting/ParseCrashReporting.h>
 
 
 
@@ -61,11 +65,14 @@ static NSString *const kGaPropertyId = @"UA-42477250-3";
     //Helpshift
     [Helpshift installForApiKey:@"75b10c6c105e8bebefc95729c56e33ae" domainName:@"casinovenezia.helpshift.com" appID:@"casinovenezia_platform_20131218091253899-f3f796e2d4b9e99"];
     
+    // Enable Crash Reporting
+    [ParseCrashReporting enable];
+    
     //Parse
     [Parse setApplicationId:@"yO3MBzW9liNCaiAfXWGb3NtZJ3VhXyy4Zh8rR5ck"
                   clientKey:@"KImYuYCrJ9j3IbDI3W2KtDXCXwmfqsRDCn5Em6A9"];
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
-    [PFFacebookUtils initializeFacebook];
+    [PFFacebookUtils initializeFacebookWithApplicationLaunchOptions:launchOptions];
     [PFTwitterUtils initializeWithConsumerKey:@"iG8JhxkUYQS0liIzwtYQ" consumerSecret:@"DCT2PL3MbHCN0RV9cx5K7iTlSdKfimaEUB8cOBELOTc"];
     
     //Google Analitycs
@@ -146,9 +153,10 @@ static NSString *const kGaPropertyId = @"UA-42477250-3";
           //  [[HelpshiftsharedInstance] handleRemoteNotification:userInfo withController:self.viewController];
         }
     }
-    
+  
     return YES;
 }
+
 
 -(void)trackingPushes:(UIApplication *)application options:(NSDictionary *)launchOptions {
     if (application.applicationState != UIApplicationStateBackground) {
@@ -458,19 +466,33 @@ static NSString *const kGaPropertyId = @"UA-42477250-3";
 
 
 -(void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region {
-    
-    if ([region.identifier isEqualToString: @"proximity"]) {
-        [self sendLocalNotification];
-    } else {
-        
-            if (_currentInstallation[@"LeftVenice"]) {
-                _currentInstallation[@"LeftVenice"] = @NO;
+     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    if ([userDefaults objectForKey:@"notificationCount"]) {
+        int a =[userDefaults integerForKey:@"notificationCount"];
+        if ((int)[userDefaults integerForKey:@"notificationCount"] < 5) {
+            [userDefaults setInteger:(int)[[NSUserDefaults standardUserDefaults] integerForKey:@"notificationCount"] + 1 forKey:@"notificationCount"];
+            if ([region.identifier isEqualToString: @"proximity"]) {
+                [self sendLocalNotification];
             }
-            [self isInVenice];
+        }
         
+        [userDefaults synchronize];
+    } else {
+        if ([region.identifier isEqualToString: @"proximity"]) {
+            [self sendLocalNotification];
+        }
+        [userDefaults setInteger:0 forKey:@"notificationCount"];
+        [userDefaults synchronize];
     }
     
+    if (_currentInstallation[@"LeftVenice"]) {
+            _currentInstallation[@"LeftVenice"] = @NO;
+    }
+    [self isInVenice];
+    
 }
+
+
 
 - (void)locationManager:(CLLocationManager *)manager didDetermineState:(CLRegionState)state forRegion:(CLRegion *)region {
    
@@ -506,9 +528,30 @@ static NSString *const kGaPropertyId = @"UA-42477250-3";
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     // Save cookies
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSData *cookiesData = [NSKeyedArchiver archivedDataWithRootObject:[[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies]];
-    [[NSUserDefaults standardUserDefaults] setObject:cookiesData
+    [userDefaults setObject:cookiesData
                                               forKey:SavedHTTPCookiesKey];
+    
+    if ([userDefaults objectForKey:@"helper"]) {
+    
+        if ((int)[userDefaults integerForKey:@"helper"] < 3) {
+            [userDefaults setInteger:(int)[[NSUserDefaults standardUserDefaults] integerForKey:@"helper"] + 1 forKey:@"helper"];
+            NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay  fromDate:[NSDate date]];
+            NSInteger day = [components day];
+            [userDefaults setInteger:day forKey:@"today"];
+        }
+      
+        [userDefaults synchronize];
+    } else {
+        NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay  fromDate:[NSDate date]];
+        NSInteger day = [components day];
+        
+        [userDefaults setInteger:0 forKey:@"helper"];
+        [userDefaults setInteger:day forKey:@"today"];
+        
+        [userDefaults synchronize];
+    }
 
 }
 
@@ -545,9 +588,10 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)newDeviceToken {
 // App switching methods to support Facebook Single Sign-On.
 // ****************************************************************************
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-    return [FBAppCall handleOpenURL:url
-                  sourceApplication:sourceApplication
-                        withSession:[PFFacebookUtils session]];
+    return [[FBSDKApplicationDelegate sharedInstance] application:application
+                                                          openURL:url
+                                                sourceApplication:sourceApplication
+                                                       annotation:annotation];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
@@ -560,7 +604,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)newDeviceToken {
         [_currentInstallation saveEventually];
     }
     
-    [FBAppCall handleDidBecomeActiveWithSession:[PFFacebookUtils session]];
+    [FBSDKAppEvents activateApp];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
@@ -569,7 +613,8 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)newDeviceToken {
      Save data if appropriate.
      See also applicationDidEnterBackground:.
      */
-    [[PFFacebookUtils session] close];
+    //[[PFFacebookUtils session] close];
+  
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult result))handler
