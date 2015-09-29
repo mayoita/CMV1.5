@@ -7,8 +7,7 @@
 //
 
 #import "CMVFirstTabbarItemViewController.h"
-#import "Helpshift.h"
-#import "RCHGestureGuide.h"
+
 
 #import "CMVLocker.h"
 #import "CMVAppDelegate.h"
@@ -79,6 +78,10 @@ PFObject *storageFestivity;
     [self setOffHelper];
     self.chatWithUs.layer.cornerRadius = 4.0;
     self.chatWithUs.layer.masksToBounds = YES;
+    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapDetected)];
+    singleTap.numberOfTapsRequired = 1;
+    [self.homeLike setUserInteractionEnabled:YES];
+    [self.homeLike addGestureRecognizer:singleTap];
 
     //CRMotion
 //    CRMotionView *motionView = [[CRMotionView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
@@ -209,7 +212,7 @@ PFObject *storageFestivity;
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 
     if ([userDefaults objectForKey:@"helper"]) {
-        int a =[[NSUserDefaults standardUserDefaults] integerForKey:@"helper"];
+       
         if ((int)[[NSUserDefaults standardUserDefaults] integerForKey:@"helper"] < 5) {
             NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay  fromDate:[NSDate date]];
             NSInteger day = [components day];
@@ -263,7 +266,7 @@ PFObject *storageFestivity;
     }
     id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
     [tracker set:kGAIScreenName value:value];
-    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
+    [tracker send:[[GAIDictionaryBuilder createScreenView] build]];
     
     [self.mainTabBarController setCenterButtonDelegate:self];
     [self setOffice];
@@ -458,7 +461,10 @@ PFObject *storageFestivity;
 
 - (IBAction)openHelp:(id)sender {
     [self infoButtonPress:@"HelpSfhift"];
-    [[Helpshift sharedInstance] showConversation:self withOptions:nil];
+    
+   [[Helpshift sharedInstance] showConversation:self withOptions:nil];
+    //[[Helpshift sharedInstance] showFAQs:self
+                       //      withOptions:@{@"enableContactUs":@"ALWAYS"}];
     
 }
 
@@ -502,5 +508,8 @@ PFObject *storageFestivity;
     [self.slidingViewController anchorTopViewToRightAnimated:YES];
 }
 
+-(void)tapDetected{
+    [self.slidingViewController anchorTopViewToRightAnimated:YES];
+}
 
 @end

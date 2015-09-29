@@ -10,7 +10,6 @@
 #import "CMVAppDelegate.h"
 #import "UINavigationController+MHDismissModalView.h"
 #import "CMVMapViewController.h"
-#import "Helpshift.h"
 #import "CMVLocalize.h"
 #import <Parse/Parse.h>
 #import "CMVEventKitController.h"
@@ -19,15 +18,15 @@
 #import "CMVPermissionForPushNotification.h"
 #import "ChimpKit.h"
 #import "CMVMainTabbarController.h"
-#import "Helpshift.h"
 #import "GAI.h"
-#import <FBSDKCoreKit/FBSDKApplicationDelegate.h>
-#import <FBSDKCoreKit/FBSDKAppEvents.h>
+
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <ParseFacebookUtilsV4/PFFacebookUtils.h>
 #import <ParseCrashReporting/ParseCrashReporting.h>
+#import <ParseTwitterUtils/ParseTwitterUtils.h>
+#import "ECSlidingViewController.h"
 
-
-
+#define PARSE_CLASS_NAME @"Events"
 #define SavedHTTPCookiesKey @"SavedHTTPCookies"
 #define MAX_RADIUS  2300.0f
 
@@ -59,21 +58,21 @@ static NSString *const kGaPropertyId = @"UA-42477250-3";
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    NSArray *windows = [[UIApplication sharedApplication] windows];
+    for(UIWindow *window in windows) {
+        NSLog(@"window: %@",window.description);
+        if(window.rootViewController == nil){
+            UIViewController* vc = [[UIViewController alloc]initWithNibName:nil bundle:nil];
+            window.rootViewController = vc;
+        }
+    }
     // Override point for customization after application launch.
     [[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];
     
     //Helpshift
+    [self parseSetUp:application withLunchOption:launchOptions];
     [Helpshift installForApiKey:@"75b10c6c105e8bebefc95729c56e33ae" domainName:@"casinovenezia.helpshift.com" appID:@"casinovenezia_platform_20131218091253899-f3f796e2d4b9e99"];
     
-    // Enable Crash Reporting
-    [ParseCrashReporting enable];
-    
-    //Parse
-    [Parse setApplicationId:@"yO3MBzW9liNCaiAfXWGb3NtZJ3VhXyy4Zh8rR5ck"
-                  clientKey:@"KImYuYCrJ9j3IbDI3W2KtDXCXwmfqsRDCn5Em6A9"];
-    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
-    [PFFacebookUtils initializeFacebookWithApplicationLaunchOptions:launchOptions];
-    [PFTwitterUtils initializeWithConsumerKey:@"iG8JhxkUYQS0liIzwtYQ" consumerSecret:@"DCT2PL3MbHCN0RV9cx5K7iTlSdKfimaEUB8cOBELOTc"];
     
     //Google Analitycs
     [GAI sharedInstance].trackUncaughtExceptions = YES;
@@ -90,35 +89,11 @@ static NSString *const kGaPropertyId = @"UA-42477250-3";
     [self trackingPushes:application options:launchOptions];
     
     [self checkLocationSrvicesEnabled];
-    
+    [self loadStorage];
     //Mail Chimp
    [[ChimpKit sharedKit] setApiKey:@"0746dc6bf1d0448814fe0e4148898870-us8"];
     
     _veniceRadius = MAX_RADIUS;
-    
-    NSUserDefaults* defs = [NSUserDefaults standardUserDefaults];
-    NSArray* languages = [defs objectForKey:@"AppleLanguages"];
-    NSString* preferredLang = [languages objectAtIndex:0];
-    NSString *displayName=[preferredLang substringToIndex:2];
-    
-     _currentInstallation= [PFInstallation currentInstallation];
-
-    [_currentInstallation addUniqueObject:displayName forKey:@"channels"];
-    
-    [_currentInstallation saveEventually];
-  
-    
-    // Associate the device with a user
-    if ([PFUser currentUser]) {
-        _currentInstallation[@"user"] = [PFUser currentUser];
-        [_currentInstallation saveEventually];
-    }
-    
-    
-    // Enable public read access by default, with any newly created PFObjects belonging to the current user
-    PFACL *defaultACL = [PFACL ACL];
-    [defaultACL setPublicReadAccess:YES];
-    [PFACL setDefaultACL:defaultACL withAccessForCurrentUser:YES];
     
     // Use Reachability to monitor connectivity
     [self monitorReachability];
@@ -130,10 +105,6 @@ static NSString *const kGaPropertyId = @"UA-42477250-3";
         // Set icon badge number to zero
         application.applicationIconBadgeNumber = 0;
     
-    }
-    if (application.applicationIconBadgeNumber != 0) {
-        application.applicationIconBadgeNumber = 0;
-        [[PFInstallation currentInstallation] saveEventually];
     }
     
     
@@ -150,13 +121,114 @@ static NSString *const kGaPropertyId = @"UA-42477250-3";
         NSDictionary* userInfo = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
         if (userInfo != nil && [[userInfo objectForKey:@"origin"] isEqualToString:@"helpshift"])
         {
-          //  [[HelpshiftsharedInstance] handleRemoteNotification:userInfo withController:self.viewController];
+            UIViewController* vc = [[UIViewController alloc]initWithNibName:nil bundle:nil];
+            [[Helpshift sharedInstance] handleRemoteNotification:userInfo withController:vc];
         }
     }
-  
+    NSArray *windowstt = [[UIApplication sharedApplication] windows];
+    for(UIWindow *window in windowstt) {
+        if(window.rootViewController == nil){
+            UIViewController* vc = [[UIViewController alloc]initWithNibName:nil bundle:nil];
+            window.rootViewController = vc;
+        }
+    }
+
     return YES;
 }
-
+-(void)parseSetUp :(UIApplication *)application withLunchOption:(NSDictionary *)launchOptions{
+    // Enable storing and querying data from Local Datastore. Remove this line if you don't want to
+    // use Local Datastore features or want to use cachePolicy.
+    // [Parse enableLocalDatastore];
+    
+    // ****************************************************************************
+    // Uncomment this line if you want to enable Crash Reporting
+    [ParseCrashReporting enable];
+    //
+    // Uncomment and fill in with your Parse credentials:
+    [Parse setApplicationId:@"yO3MBzW9liNCaiAfXWGb3NtZJ3VhXyy4Zh8rR5ck"
+                  clientKey:@"KImYuYCrJ9j3IbDI3W2KtDXCXwmfqsRDCn5Em6A9"];
+    //
+    // If you are using Facebook, uncomment and add your FacebookAppID to your bundle's plist as
+    // described here: https://developers.facebook.com/docs/getting-started/facebook-sdk-for-ios/
+    [PFFacebookUtils initializeFacebookWithApplicationLaunchOptions:launchOptions];
+    //[PFFacebookUtils initializeFacebook];
+    // ****************************************************************************
+            [PFTwitterUtils initializeWithConsumerKey:@"iG8JhxkUYQS0liIzwtYQ" consumerSecret:@"DCT2PL3MbHCN0RV9cx5K7iTlSdKfimaEUB8cOBELOTc"];
+    //[PFUser enableAutomaticUser];
+    _currentInstallation= [PFInstallation currentInstallation];
+    // Associate the device with a user
+    if ([PFUser currentUser]) {
+        _currentInstallation[@"user"] = [PFUser currentUser];
+        [_currentInstallation saveEventually];
+    }
+    
+    PFACL *defaultACL = [PFACL ACL];
+    
+    // If you would like all objects to be private by default, remove this line.
+    [defaultACL setPublicReadAccess:YES];
+    
+    [PFACL setDefaultACL:defaultACL withAccessForCurrentUser:YES];
+    
+    if (application.applicationIconBadgeNumber != 0) {
+        application.applicationIconBadgeNumber = 0;
+        [_currentInstallation saveEventually];
+    }
+    
+    if (application.applicationState != UIApplicationStateBackground) {
+        // Track an app open here if we launch with a push, unless
+        // "content_available" was used to trigger a background push (introduced in iOS 7).
+        // In that case, we skip tracking here to avoid double counting the app-open.
+        BOOL preBackgroundPush = ![application respondsToSelector:@selector(backgroundRefreshStatus)];
+        BOOL oldPushHandlerOnly = ![self respondsToSelector:@selector(application:didReceiveRemoteNotification:fetchCompletionHandler:)];
+        BOOL noPushPayload = ![launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
+        if (preBackgroundPush || oldPushHandlerOnly || noPushPayload) {
+            [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+        }
+    }
+    
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 80000
+    if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {
+        UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeAlert |
+                                                        UIUserNotificationTypeBadge |
+                                                        UIUserNotificationTypeSound);
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:userNotificationTypes
+                                                                                 categories:nil];
+        [application registerUserNotificationSettings:settings];
+        [application registerForRemoteNotifications];
+    } else
+#endif
+    {
+        [application registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
+                                                         UIRemoteNotificationTypeAlert |
+                                                         UIRemoteNotificationTypeSound)];
+    }
+}
+-(void)loadStorage {
+    PFQuery *query = [PFQuery queryWithClassName:PARSE_CLASS_NAME];
+    // If no objects are loaded in memory, we look to the cache first to fill the table
+    // and then subsequently do a query against the network. https://parse.com/docs/ios_guide#queries-caching/iOS
+    //BOOL isInCache = [query hasCachedResult];
+    //query.cachePolicy = kPFCachePolicyCacheElseNetwork;
+    [query setCachePolicy:kPFCachePolicyNetworkOnly];
+    if (![[UIApplication sharedApplication].delegate performSelector:@selector(isParseReachable)]) {
+        [query setCachePolicy:kPFCachePolicyCacheThenNetwork];
+    }
+    
+    if (self.storage.count == 0) {
+        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            if (!error) {
+                
+                self.storage = objects.mutableCopy;
+             
+                
+            } else {
+                // Log details of the failure
+                NSLog(@"Error: %@ %@", error, [error userInfo]);
+            }
+        }];
+    }
+    
+}
 
 -(void)trackingPushes:(UIApplication *)application options:(NSDictionary *)launchOptions {
     if (application.applicationState != UIApplicationStateBackground) {
@@ -468,7 +540,7 @@ static NSString *const kGaPropertyId = @"UA-42477250-3";
 -(void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region {
      NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     if ([userDefaults objectForKey:@"notificationCount"]) {
-        int a =[userDefaults integerForKey:@"notificationCount"];
+       
         if ((int)[userDefaults integerForKey:@"notificationCount"] < 5) {
             [userDefaults setInteger:(int)[[NSUserDefaults standardUserDefaults] integerForKey:@"notificationCount"] + 1 forKey:@"notificationCount"];
             if ([region.identifier isEqualToString: @"proximity"]) {
@@ -572,6 +644,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)newDeviceToken {
     [_currentInstallation addUniqueObject:@"Slots" forKey:@"channels"];
     [_currentInstallation addUniqueObject:@"Poker" forKey:@"channels"];
     [_currentInstallation saveEventually];
+    
     [[Helpshift sharedInstance] registerDeviceToken:newDeviceToken];
 }
 
@@ -628,7 +701,8 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)newDeviceToken {
 }
 -(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     if ([[userInfo objectForKey:@"origin"] isEqualToString:@"helpshift"]) {
-      //  [[Helpshift sharedInstance] handleRemoteNotification:userInfo withController:self.viewController];
+        UIViewController* vc = [[UIViewController alloc]initWithNibName:nil bundle:nil];
+        [[Helpshift sharedInstance] handleRemoteNotification:userInfo withController:vc];
     }
     if (application.applicationState == UIApplicationStateInactive) {
         // The application was just brought from the background to the foreground,

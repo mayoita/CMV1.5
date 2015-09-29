@@ -16,7 +16,7 @@
 #import <Parse/Parse.h>
 #import "CMVEventKitController.h"
 #import "CMVSharedClass.h"
-#import "RCHGestureGuide.h"
+
 #import "CMVEventKitController.h"
 #import "CMVLocalize.h"
 
@@ -92,7 +92,7 @@
         CMVEventViewController *eventDetail = [storyboard instantiateViewControllerWithIdentifier:@"EventViewControlleriPhone"];
         self.eventDelegate=eventDetail;
     }
-    [self loadStorage];
+  //  [self loadStorage];
     [self setOffice];
     
     
@@ -208,7 +208,7 @@
     [super viewDidAppear:animated];
     
     if (iPHONE) {
-        [self showGestureGuide];
+     
       
 //        CGRect sectionRect = [self.tableView rectForSection:3];
 //        sectionRect.size.height = self.tableView.frame.size.height;
@@ -223,18 +223,7 @@
 
 
 
-- (void)showGestureGuide
-{;
 
-    [RCHGestureGuide showGestures:@[ @[RCHGestureSwipeLeft,NSLocalizedString(@"Swipe to move between events", nil),[NSValue valueWithCGPoint:CGPointMake(250.f,75.f)],[NSValue valueWithCGPoint:CGPointMake(70.f,75.f)]],
-                                     @[RCHGestureSwipeRightUp,NSLocalizedString(@"Swipe to reveal extra Menu", nil),[NSValue valueWithCGPoint:CGPointMake(10,self.view.frame.size.height/2 + 20)],[NSValue valueWithCGPoint:CGPointMake(self.view.frame.size.width/2,self.view.frame.size.height/2 + 20)]],
-                                     @[RCHGestureTap,NSLocalizedString(@"Tap to open an event", nil),[NSValue valueWithCGPoint:CGPointMake(self.view.frame.size.width/2 + 10,200.f)]],
-                                     @[RCHGestureSwipeLeft,NSLocalizedString(@"Swipe to share the event or add to your calendar", nil),[NSValue valueWithCGPoint:CGPointMake(240.f,200.f)],[NSValue valueWithCGPoint:CGPointMake(70.f,200.f)]],
-                                     
-                                     @[RCHGestureTapUp,NSLocalizedString(@"Tap to change location", nil),[NSValue valueWithCGPoint:CGPointMake(self.view.frame.size.width/2 + 20,self.view.frame.size.height + 30)]],
-                                     ] forKey:@"Events"];
-    
-}
 
 
 #pragma mark - Center button delegate
@@ -244,6 +233,7 @@
 }
 
 -(void)setOffice {
+    
     CMVSharedClass *shared=[[CMVSharedClass alloc] init];
     if (self.site.location == VENEZIA) {
         Office=CN;
@@ -265,9 +255,9 @@
 }
 
 -(NSMutableArray *)inOffice:(NSString *)theOffice{
-    
+    CMVAppDelegate *appDelegate=(CMVAppDelegate *)[UIApplication sharedApplication].delegate;
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"office == %@", theOffice];
-    NSMutableArray *helper=[storage filteredArrayUsingPredicate:pred].mutableCopy;
+    NSMutableArray *helper=[appDelegate.storage filteredArrayUsingPredicate:pred].mutableCopy;
     
     return helper;
     
@@ -380,14 +370,14 @@
     PFObject *event=[eventsOnThisDay objectAtIndex:indexPath.row];
    
     cell.labelDescription.hidden = YES;
-    cell.readDescription.hidden =YES;
+    cell.readDescriptionS.hidden =YES;
     cell.eventStartDate.text=[formatter stringFromDate:event[@"StartDate"]];
     cell.startDate=event[@"StartDate"];
     cell.endDate=event[@"EndDate"];
     cell.eventEndDate.text=[formatter stringFromDate:event[@"EndDate"]];
     [self localizeMemo:cell event:event];
     cell.eventURL=event[@"URL"];
-
+    cell.picture.image = [UIImage imageNamed:@"Test.png"];
     cell.talking=NO;
     
     //Show default image
@@ -398,10 +388,7 @@
     } else {
         [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
             
-          
             [cell.picture setImage:[UIImage imageWithData:data]];
-//            cell.eventPicture.contentMode=UIViewContentModeScaleToFill;
-//            cell.eventPicture.frame=CGRectMake(0, 0, self.view.frame.size.width, self.rowHeight);
            
         }    ];
     }
@@ -463,7 +450,7 @@
         case IT :
             if (!(([event[@"memoIT"] isKindOfClass:[NSNull class]]) || (event[@"memoIT"] == nil) || ([event[@"memoIT"] isEqualToString:@""]))) {
                 cell.eventMemo=event[@"memoIT"];
-                cell.readDescription.hidden =NO;
+                cell.readDescriptionS.hidden =NO;
             }
             if (!(([event[@"NameIT"] isKindOfClass:[NSNull class]]) || (event[@"NameIT"] == nil))) {
                 cell.eventName.text = event[@"NameIT"];
@@ -476,7 +463,7 @@
         case DE :
             if (!(([event[@"memoDE"] isKindOfClass:[NSNull class]]) || (event[@"memoDE"] == nil) || ([event[@"memoDE"] isEqualToString:@""]))) {
                 cell.eventMemo=event[@"memoDE"];
-                cell.readDescription.hidden =NO;
+                cell.readDescriptionS.hidden =NO;
             }
             if (!(([event[@"NameDE"] isKindOfClass:[NSNull class]]) || (event[@"NameDE"] == nil))) {
                 cell.eventName.text = event[@"NameDE"];
@@ -489,7 +476,7 @@
         case FR :
             if (!(([event[@"memoFR"] isKindOfClass:[NSNull class]]) || (event[@"memoFR"] == nil) || ([event[@"memoFR"] isEqualToString:@""]))) {
                 cell.eventMemo=event[@"memoFR"];
-                cell.readDescription.hidden =NO;
+                cell.readDescriptionS.hidden =NO;
             }
             if (!(([event[@"NameFR"] isKindOfClass:[NSNull class]]) || (event[@"NameFR"] == nil))) {
                 cell.eventName.text = event[@"NameFR"];
@@ -502,7 +489,7 @@
         case ES :
             if (!(([event[@"memoES"] isKindOfClass:[NSNull class]]) || (event[@"memoES"] == nil) || ([event[@"memoES"] isEqualToString:@""]))) {
                 cell.eventMemo=event[@"memoES"];
-                cell.readDescription.hidden =NO;
+                cell.readDescriptionS.hidden =NO;
             }
             if (!(([event[@"NameES"] isKindOfClass:[NSNull class]]) || (event[@"NameES"] == nil))) {
                 cell.eventName.text = event[@"NameES"];
@@ -515,7 +502,7 @@
         case RU  :
             if (!(([event[@"memoRU"] isKindOfClass:[NSNull class]]) || (event[@"memoRU"] == nil) || ([event[@"memoRU"] isEqualToString:@""]))) {
                 cell.eventMemo=event[@"memoRU"];
-                cell.readDescription.hidden =NO;
+                cell.readDescriptionS.hidden =NO;
             }
             if (!(([event[@"NameRU"] isKindOfClass:[NSNull class]]) || (event[@"NameRU"] == nil))) {
                 cell.eventName.text = event[@"NameRU"];
@@ -528,7 +515,7 @@
         case ZH:
             if (!(([event[@"memoZH"] isKindOfClass:[NSNull class]]) || (event[@"memoZH"] == nil) || ([event[@"memoZH"] isEqualToString:@""]))) {
                 cell.eventMemo=event[@"memoZH"];
-                cell.readDescription.hidden =NO;
+                cell.readDescriptionS.hidden =NO;
             }
             if (!(([event[@"NameZH"] isKindOfClass:[NSNull class]]) || (event[@"NameZH"] == nil))) {
                 cell.eventName.text = event[@"NameZH"];
@@ -541,7 +528,7 @@
         case EN:
             if (!(([event[@"memo"] isKindOfClass:[NSNull class]]) || (event[@"memo"] == nil) || ([event[@"memo"] isEqualToString:@""]))) {
                 cell.eventMemo=event[@"memo"];
-                cell.readDescription.hidden =NO;
+                cell.readDescriptionS.hidden =NO;
             }
             cell.eventMemo=event[@"memo"];
             if (!(([event[@"Name"] isKindOfClass:[NSNull class]]) || (event[@"Name"] == nil))) {

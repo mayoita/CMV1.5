@@ -10,7 +10,7 @@
 #import "CMVFesturesFlowLayout.h"
 #import "CMVEventKitShared.h"
 #import "CMVConstants.h"
-#import "RCHGestureGuide.h"
+
 
 #define indexForTextRules 1
 #define indexForNotes 1

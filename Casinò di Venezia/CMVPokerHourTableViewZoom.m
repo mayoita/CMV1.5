@@ -359,7 +359,7 @@
             cell.snapshoot = [self captureView:cell];
         }    ];
     }
-    cell.readDescription.hidden=YES;
+    cell.readDescriptionS.hidden=YES;
     cell.dateForPoker.hidden = NO;
     cell.dateForPoker.layer.shadowOpacity = 0.5;
     cell.dateForPoker.layer.shadowRadius = 0.3;

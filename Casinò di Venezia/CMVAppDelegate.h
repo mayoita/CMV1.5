@@ -23,7 +23,8 @@
 
 @property(strong,nonatomic)UIStoryboard *storyboard;
 @property (strong, nonatomic) id<GAITracker> tracker;
-
+@property (nonatomic)BOOL appOpen;
+@property (strong, nonatomic) NSMutableArray *storage;
 
 - (BOOL)isParseReachable;
 -(void)proximityMonitoring:(NSUserDefaults *)aDefaults;

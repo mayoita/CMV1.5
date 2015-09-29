@@ -179,10 +179,10 @@ utilityButtonSelector:(SEL)utilityButtonSelector {
 -(void)initWithHeight:(CGFloat)height rightUtilityButtons:(NSArray *)rightUtilityButtons {
     self.height = height;
     //Speech button setup
-    self.readDescription.hidden=YES;
+    self.readDescriptionS.hidden=YES;
     if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
         self.synthesizer = [[AVSpeechSynthesizer alloc] init];
-        self.readDescription.hidden=NO;
+        self.readDescriptionS.hidden=NO;
     }
     self.synthesizer.delegate=self;
     
@@ -258,10 +258,14 @@ utilityButtonSelector:(SEL)utilityButtonSelector {
     self.labelForPoker.minimumScaleFactor=0.5;
     self.labelForPoker.adjustsFontSizeToFitWidth=YES;
     
-    self.readDescription=[[CMVVoiceOpen alloc] initWithFrame:CGRectMake(12, height-42, 30, 30)];
-    [self.readDescription addTarget:self
-                             action:@selector(readDescription:)
-       forControlEvents:UIControlEventTouchUpInside];
+    self.readDescriptionS=[[UIImageView alloc] initWithFrame:CGRectMake(8, 8, 50, 50)];
+    self.readDescriptionS.image = [UIImage imageNamed:@"speak"];
+    self.readDescriptionS.contentMode = UIViewContentModeScaleToFill;
+
+    UITapGestureRecognizer *singleTapS = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapDetected)];
+    singleTapS.numberOfTapsRequired = 1;
+    [self.readDescriptionS setUserInteractionEnabled:YES];
+    [self.readDescriptionS addGestureRecognizer:singleTapS];
 
     
     self.dateForPoker=[[UILabel alloc] initWithFrame:CGRectMake(30, 50, 261, 21)];
@@ -282,7 +286,7 @@ utilityButtonSelector:(SEL)utilityButtonSelector {
     [scrollViewContentView addSubview:self.dateForPoker];
    
   
-   [scrollViewContentView addSubview:self.readDescription];
+   [scrollViewContentView addSubview:self.readDescriptionS];
     
     //[scrollViewContentView addSubview:self.demoView];
     
@@ -408,17 +412,18 @@ utilityButtonSelector:(SEL)utilityButtonSelector {
         self.scrollViewButtonViewRight.frame = CGRectMake(scrollView.contentOffset.x + (CGRectGetWidth(self.bounds) - [self rightUtilityButtonsWidth]), 0.0f, [self rightUtilityButtonsWidth], _height);
     }
 }
-- (void)readDescription:(id)sender {
+
+-(void)tapDetected{
     if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
         if (self.eventMemo) {
             if (!talking) {
                 [self readButtonPress:@"ReadingEvent"];
                 AVSpeechUtterance *utterance = [AVSpeechUtterance speechUtteranceWithString:self.eventMemo];
                 //utterance.voice = AVSpeechUtterance.AVSpeechSynthesisVoice.FromLanguage ("en-AU");
-                utterance.rate=AVSpeechUtteranceMaximumSpeechRate/8;
+              //  utterance.rate=AVSpeechUtteranceMaximumSpeechRate/4;
                 [self.synthesizer speakUtterance:utterance];
                 talking = TRUE;
-                self.readDescription.selected=FALSE;
+                self.readDescriptionS.image =[UIImage imageNamed:@"speak_f"];
             } else {
                 [self stopTalk];
             }
@@ -441,11 +446,13 @@ utilityButtonSelector:(SEL)utilityButtonSelector {
 -(void)stopTalk {
     talking=FALSE;
     [self.synthesizer stopSpeakingAtBoundary:NO];
-    self.readDescription.selected=TRUE;
+
+    self.readDescriptionS.image =[UIImage imageNamed:@"speak"];
 }
 
 -(void)speechSynthesizer:(AVSpeechSynthesizer *)synthesizer didFinishSpeechUtterance:(AVSpeechUtterance *)utterance {
-    self.readDescription.selected=TRUE;
+
+    self.readDescriptionS.image =[UIImage imageNamed:@"speak"];
 
 }
 

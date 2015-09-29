@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="MRC-3S-e6z">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="MRC-3S-e6z">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -128,10 +128,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TestModal" id="iv0-5K-9QC" customClass="CMVStaticGameCell">
-                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="22" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iv0-5K-9QC" id="xtI-px-XUN">
-                                    <rect key="frame" x="0.0" y="0.0" width="287" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="567" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -418,10 +418,10 @@
                         <color key="backgroundColor" red="0.97254908080000002" green="0.97647064920000004" blue="0.98431378599999997" alpha="1" colorSpace="deviceRGB"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="LXm-Vb-VKI">
-                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="86" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LXm-Vb-VKI" id="BSf-A3-DZ7">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="101" contentMode="left" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="5" preferredMaxLayoutWidth="178" translatesAutoresizingMaskIntoConstraints="NO" id="uLn-88-MKh">
@@ -465,7 +465,7 @@
                     <navigationItem key="navigationItem" title="MULTIPLE CHANCES" id="0fJ-zJ-Fek">
                         <barButtonItem key="rightBarButtonItem" id="8dB-ba-6jZ">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="t6O-eV-r31">
-                                <rect key="frame" x="272" y="11" width="32" height="22"/>
+                                <rect key="frame" x="548" y="11" width="32" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" size="button"/>
                                 <state key="normal" image="game">
@@ -552,7 +552,7 @@
             </objects>
             <point key="canvasLocation" x="2306.25" y="-1255.9859154929577"/>
         </scene>
-        <!--Game View Controller-->
+        <!--Data Source-->
         <scene sceneID="7Rd-QN-drG">
             <objects>
                 <viewController storyboardIdentifier="GameViewControllerOld" id="hMH-bk-05h" customClass="CMVGameViewController" sceneMemberID="viewController">
@@ -852,7 +852,7 @@
             </objects>
             <point key="canvasLocation" x="1530" y="136"/>
         </scene>
-        <!--Event View Controller-->
+        <!--Data Source-->
         <scene sceneID="U9I-9L-rQ8">
             <objects>
                 <viewController storyboardIdentifier="EventViewControlleriPhone" id="vmY-pC-irj" customClass="CMVEventViewController" sceneMemberID="viewController">
@@ -1025,7 +1025,7 @@
             </objects>
             <point key="canvasLocation" x="3118" y="180"/>
         </scene>
-        <!--Game View Controller-->
+        <!--Data Source-->
         <scene sceneID="X3E-Sq-uov">
             <objects>
                 <viewController storyboardIdentifier="GameViewController" id="sIB-7y-82D" customClass="CMVGameViewController" sceneMemberID="viewController">
@@ -1233,7 +1233,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="400" height="551"/>
                                 </variation>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bpv-ZK-AKd" customClass="CMVMenuButton">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bpv-ZK-AKd" customClass="CMVMenuButton">
                                 <rect key="frame" x="10" y="25" width="44" height="33"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="33" id="3xM-Ws-2g8"/>
@@ -1249,7 +1249,7 @@
                                     <action selector="openMenu:" destination="vLv-fP-NQn" eventType="touchUpInside" id="fR2-Gw-DZO"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="JACKPOT" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="vct-Bb-BeL">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="JACKPOT" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="vct-Bb-BeL">
                                 <rect key="frame" x="16" y="442" width="568" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="g78-9W-f7n"/>
@@ -1281,7 +1281,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UNDER 18 ARE NOT ALLOWED TO GAMBLE. GAMBLING CAN BE PATHOLOGICALLY ADDICTIVE." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" preferredMaxLayoutWidth="242" translatesAutoresizingMaskIntoConstraints="NO" id="0s3-iF-eWE" customClass="CMVDiciottoPiu">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="UNDER 18 ARE NOT ALLOWED TO GAMBLE. GAMBLING CAN BE PATHOLOGICALLY ADDICTIVE." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" preferredMaxLayoutWidth="242" translatesAutoresizingMaskIntoConstraints="NO" id="0s3-iF-eWE" customClass="CMVDiciottoPiu">
                                 <rect key="frame" x="68" y="23" width="498" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="hDW-XR-dxg"/>
@@ -1305,7 +1305,7 @@
                                     <rect key="frame" x="20" y="92" width="364" height="21"/>
                                 </variation>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TODAY OPEN ##:## - ##:##" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mrd-uc-uWz">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="TODAY OPEN ##:## - ##:##" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mrd-uc-uWz">
                                 <rect key="frame" x="16" y="520" width="568" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="BVe-R5-pcd"/>
@@ -1353,7 +1353,7 @@
                                     <constraint firstAttribute="height" constant="72" id="38d-CW-ATm"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="JACKPOT" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ZHj-wZ-Wgl">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="JACKPOT" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ZHj-wZ-Wgl">
                                 <rect key="frame" x="20" y="483" width="544" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="m00-b6-yGb"/>
@@ -1362,7 +1362,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="highlightedColor" red="1" green="0.18657407407407409" blue="0.096759259259259253" alpha="1" colorSpace="calibratedRGB"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HomeLike.png" translatesAutoresizingMaskIntoConstraints="NO" id="KJU-MW-zak">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="HomeLike.png" translatesAutoresizingMaskIntoConstraints="NO" id="KJU-MW-zak">
                                 <rect key="frame" x="0.0" y="249" width="240" height="54"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="54" id="QlZ-ka-upa"/>
@@ -1377,7 +1377,7 @@
                                     </mask>
                                 </variation>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FrecciaHome.png" translatesAutoresizingMaskIntoConstraints="NO" id="LDV-lD-X7g">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="FrecciaHome.png" translatesAutoresizingMaskIntoConstraints="NO" id="LDV-lD-X7g">
                                 <rect key="frame" x="10" y="255" width="57" height="42"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="42" id="yQ8-NW-Ugi"/>
@@ -1470,7 +1470,7 @@
             </objects>
             <point key="canvasLocation" x="378" y="-140"/>
         </scene>
-        <!--RESTAURANT-->
+        <!--Data Source-->
         <scene sceneID="4eK-iA-53s">
             <objects>
                 <viewController id="j4M-5x-V7T" customClass="CMVREstaurantViewController" sceneMemberID="viewController">
@@ -1629,7 +1629,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UNDER 18 ARE NOT ALLOWED TO GAMBLE. GAMBLING CAN BE PATHOLOGICALLY ADDICTIVE." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" preferredMaxLayoutWidth="256" translatesAutoresizingMaskIntoConstraints="NO" id="vhX-nX-L4O" customClass="CMVDiciottoPiu">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="UNDER 18 ARE NOT ALLOWED TO GAMBLE. GAMBLING CAN BE PATHOLOGICALLY ADDICTIVE." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" preferredMaxLayoutWidth="256" translatesAutoresizingMaskIntoConstraints="NO" id="vhX-nX-L4O" customClass="CMVDiciottoPiu">
                                 <rect key="frame" x="44" y="20" width="536" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="jc2-x5-ISD"/>
@@ -1638,7 +1638,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="5" preferredMaxLayoutWidth="244" translatesAutoresizingMaskIntoConstraints="NO" id="Kjb-cH-b7S">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="5" preferredMaxLayoutWidth="244" translatesAutoresizingMaskIntoConstraints="NO" id="Kjb-cH-b7S">
                                 <rect key="frame" x="43" y="50" width="537" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="sAt-D2-lg8"/>
@@ -1662,7 +1662,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MyCollectionCell" id="uAN-J1-bkL">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <rect key="frame" x="140" y="0.0" width="320" height="30"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="30"/>
@@ -1828,7 +1828,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MyCollectionCell" id="ayv-It-p8S">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <rect key="frame" x="145" y="0.0" width="311" height="30"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="311" height="30"/>
@@ -1894,7 +1894,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UNDER 18 ARE NOT ALLOWED TO GAMBLE. GAMBLING CAN BE PATHOLOGICALLY ADDICTIVE." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" preferredMaxLayoutWidth="256" translatesAutoresizingMaskIntoConstraints="NO" id="sT4-E7-FFD" customClass="CMVDiciottoPiu">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="UNDER 18 ARE NOT ALLOWED TO GAMBLE. GAMBLING CAN BE PATHOLOGICALLY ADDICTIVE." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" preferredMaxLayoutWidth="256" translatesAutoresizingMaskIntoConstraints="NO" id="sT4-E7-FFD" customClass="CMVDiciottoPiu">
                                 <rect key="frame" x="44" y="20" width="536" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="Xdl-Td-a1P"/>
@@ -2043,7 +2043,7 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BK_PokerHour.png" translatesAutoresizingMaskIntoConstraints="NO" id="xZg-C8-q6X">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="18+" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NVm-rc-Zus">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="18+" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NVm-rc-Zus">
                                 <rect key="frame" x="37" y="23" width="30" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="CCr-O1-lYS"/>
@@ -2053,7 +2053,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UNDER 18 ARE NOT ALLOWED TO GAMBLE. GAMBLING CAN BE PATHOLOGICALLY ADDICTIVE." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" preferredMaxLayoutWidth="256" translatesAutoresizingMaskIntoConstraints="NO" id="99T-Q0-JTS" customClass="CMVDiciottoPiu">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="UNDER 18 ARE NOT ALLOWED TO GAMBLE. GAMBLING CAN BE PATHOLOGICALLY ADDICTIVE." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" preferredMaxLayoutWidth="256" translatesAutoresizingMaskIntoConstraints="NO" id="99T-Q0-JTS" customClass="CMVDiciottoPiu">
                                 <rect key="frame" x="68" y="23" width="512" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="8sF-Iq-2mr"/>
@@ -2442,7 +2442,7 @@
                                     <rect key="frame" x="0.0" y="49" width="800" height="751"/>
                                 </variation>
                             </scrollView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="18+" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3jl-ur-xPR">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="18+" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3jl-ur-xPR">
                                 <rect key="frame" x="40" y="20" width="31" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="ejW-HM-cmj"/>
@@ -2452,7 +2452,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UNDER 18 ARE NOT ALLOWED TO GAMBLE. GAMBLING CAN BE PATHOLOGICALLY ADDICTIVE." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" preferredMaxLayoutWidth="256" translatesAutoresizingMaskIntoConstraints="NO" id="WNY-H6-6j5" customClass="CMVDiciottoPiu">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="UNDER 18 ARE NOT ALLOWED TO GAMBLE. GAMBLING CAN BE PATHOLOGICALLY ADDICTIVE." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" preferredMaxLayoutWidth="256" translatesAutoresizingMaskIntoConstraints="NO" id="WNY-H6-6j5" customClass="CMVDiciottoPiu">
                                 <rect key="frame" x="74" y="20" width="512" height="18"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="18" id="rSB-c4-k0x"/>
@@ -2623,7 +2623,7 @@
                                     <rect key="frame" x="98" y="290" width="202" height="99"/>
                                 </variation>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="97M-Hz-wUz">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="97M-Hz-wUz">
                                 <rect key="frame" x="20" y="530" width="135" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="8Vb-TS-Rxt"/>
@@ -2659,7 +2659,7 @@
                                     <rect key="frame" x="20" y="379" width="51" height="31"/>
                                 </variation>
                             </switch>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EwO-o7-g7W">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EwO-o7-g7W">
                                 <rect key="frame" x="445" y="530" width="135" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="HUt-eT-Q9s"/>
@@ -2906,7 +2906,7 @@
                                     <action selector="poker:" destination="IEg-nx-Bgy" eventType="valueChanged" id="tiH-Oe-aqt"/>
                                 </connections>
                             </switch>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SLOT NEWS" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ApP-SB-Zha">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="SLOT NEWS" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ApP-SB-Zha">
                                 <rect key="frame" x="99" y="215" width="481" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="VCX-W5-7JF"/>
@@ -2936,7 +2936,7 @@
                                     <action selector="openMenu:" destination="vLv-fP-NQn" eventType="touchUpInside" id="yv5-yd-94g"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EVENTS NEWS" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="bBO-tm-09d">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="EVENTS NEWS" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="bBO-tm-09d">
                                 <rect key="frame" x="99" y="165" width="481" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="bG0-au-D8U"/>
@@ -3117,7 +3117,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UNDER 18 ARE NOT ALLOWED TO GAMBLE. GAMBLING CAN BE PATHOLOGICALLY ADDICTIVE." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" preferredMaxLayoutWidth="256" translatesAutoresizingMaskIntoConstraints="NO" id="Kni-H0-Hnu" customClass="CMVDiciottoPiu">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="UNDER 18 ARE NOT ALLOWED TO GAMBLE. GAMBLING CAN BE PATHOLOGICALLY ADDICTIVE." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" preferredMaxLayoutWidth="256" translatesAutoresizingMaskIntoConstraints="NO" id="Kni-H0-Hnu" customClass="CMVDiciottoPiu">
                                 <rect key="frame" x="68" y="23" width="512" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="4Me-QN-FLT"/>
@@ -3250,7 +3250,7 @@ ENTRY ALLOWED TO ADULTS OVER THE AGE OF EIGHTEEN. ONLY ON PRESENTATION OF A VALI
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UNDER 18 ARE NOT ALLOWED TO GAMBLE. GAMBLING CAN BE PATHOLOGICALLY ADDICTIVE." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" preferredMaxLayoutWidth="256" translatesAutoresizingMaskIntoConstraints="NO" id="Gca-SN-2iC" customClass="CMVDiciottoPiu">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="UNDER 18 ARE NOT ALLOWED TO GAMBLE. GAMBLING CAN BE PATHOLOGICALLY ADDICTIVE." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" preferredMaxLayoutWidth="256" translatesAutoresizingMaskIntoConstraints="NO" id="Gca-SN-2iC" customClass="CMVDiciottoPiu">
                                 <rect key="frame" x="68" y="23" width="516" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="u5k-B0-N4A"/>
@@ -3471,10 +3471,10 @@ ENTRY ALLOWED TO ADULTS OVER THE AGE OF EIGHTEEN. ONLY ON PRESENTATION OF A VALI
                             <tableViewSection id="izc-69-dqE">
                                 <cells>
                                     <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="Dtw-9C-BjF">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Dtw-9C-BjF" id="f09-ef-BJt">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="MenuCellView.png" highlightedImage="MenuCellViewTap.png" translatesAutoresizingMaskIntoConstraints="NO" id="zYe-jM-hLx">
@@ -3503,10 +3503,10 @@ ENTRY ALLOWED TO ADULTS OVER THE AGE OF EIGHTEEN. ONLY ON PRESENTATION OF A VALI
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Main" id="700-oi-s1F">
-                                        <rect key="frame" x="0.0" y="50" width="320" height="50"/>
+                                        <rect key="frame" x="0.0" y="50" width="600" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="700-oi-s1F" id="ibR-5Y-XHp">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="MenuCellView.png" highlightedImage="MenuCellViewTap.png" translatesAutoresizingMaskIntoConstraints="NO" id="tE1-iY-2LC">
@@ -3533,10 +3533,10 @@ ENTRY ALLOWED TO ADULTS OVER THE AGE OF EIGHTEEN. ONLY ON PRESENTATION OF A VALI
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LogIn" id="FVE-Lb-bcS">
-                                        <rect key="frame" x="0.0" y="100" width="320" height="50"/>
+                                        <rect key="frame" x="0.0" y="100" width="600" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FVE-Lb-bcS" id="wR1-zH-KBK">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="MenuCellView.png" highlightedImage="MenuCellViewTap.png" translatesAutoresizingMaskIntoConstraints="NO" id="ccH-j0-bdV">
@@ -3570,10 +3570,10 @@ ENTRY ALLOWED TO ADULTS OVER THE AGE OF EIGHTEEN. ONLY ON PRESENTATION OF A VALI
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Newsletter" id="Sxe-FX-rgf">
-                                        <rect key="frame" x="0.0" y="200" width="320" height="50"/>
+                                        <rect key="frame" x="0.0" y="150" width="600" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Sxe-FX-rgf" id="xrG-97-HAA">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="MenuCellView.png" highlightedImage="MenuCellViewTap.png" translatesAutoresizingMaskIntoConstraints="NO" id="Zik-Td-MYZ">
@@ -3607,10 +3607,10 @@ ENTRY ALLOWED TO ADULTS OVER THE AGE OF EIGHTEEN. ONLY ON PRESENTATION OF A VALI
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FacebookLike" id="dtu-ZM-I2u">
-                                        <rect key="frame" x="0.0" y="250" width="320" height="50"/>
+                                        <rect key="frame" x="0.0" y="200" width="600" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dtu-ZM-I2u" id="pV4-5I-m1K">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="MenuCellView.png" highlightedImage="MenuCellViewTap.png" translatesAutoresizingMaskIntoConstraints="NO" id="Hny-P5-XS3">
@@ -3645,10 +3645,10 @@ ENTRY ALLOWED TO ADULTS OVER THE AGE OF EIGHTEEN. ONLY ON PRESENTATION OF A VALI
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CasinoMobile" id="qGK-qD-RNt">
-                                        <rect key="frame" x="0.0" y="300" width="320" height="50"/>
+                                        <rect key="frame" x="0.0" y="250" width="600" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qGK-qD-RNt" id="eoN-k2-zVL">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="MenuCellView.png" highlightedImage="MenuCellViewTap.png" translatesAutoresizingMaskIntoConstraints="NO" id="1ib-sb-Hfc">
@@ -3682,10 +3682,10 @@ ENTRY ALLOWED TO ADULTS OVER THE AGE OF EIGHTEEN. ONLY ON PRESENTATION OF A VALI
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="VPC" id="uWG-cC-qYo">
-                                        <rect key="frame" x="0.0" y="350" width="320" height="50"/>
+                                        <rect key="frame" x="0.0" y="300" width="600" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uWG-cC-qYo" id="xjb-H1-S5d">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="MenuCellView.png" highlightedImage="MenuCellViewTap.png" translatesAutoresizingMaskIntoConstraints="NO" id="nCt-6s-qFm">
@@ -3722,10 +3722,10 @@ ENTRY ALLOWED TO ADULTS OVER THE AGE OF EIGHTEEN. ONLY ON PRESENTATION OF A VALI
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Subscription" id="1OJ-f2-zAb">
-                                        <rect key="frame" x="0.0" y="400" width="320" height="50"/>
+                                        <rect key="frame" x="0.0" y="350" width="600" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1OJ-f2-zAb" id="ZUo-p1-Aip">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="MenuCellView.png" highlightedImage="MenuCellViewTap.png" translatesAutoresizingMaskIntoConstraints="NO" id="3MH-QJ-rt7">
@@ -3755,10 +3755,10 @@ ENTRY ALLOWED TO ADULTS OVER THE AGE OF EIGHTEEN. ONLY ON PRESENTATION OF A VALI
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TimeTablesMenu" id="ll2-wT-3C4">
-                                        <rect key="frame" x="0.0" y="450" width="320" height="50"/>
+                                        <rect key="frame" x="0.0" y="400" width="600" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ll2-wT-3C4" id="39u-sE-yXu">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="MenuCellView.png" highlightedImage="MenuCellViewTap.png" translatesAutoresizingMaskIntoConstraints="NO" id="qgy-HY-Y0g">
@@ -3948,7 +3948,7 @@ ENTRY ALLOWED TO ADULTS OVER THE AGE OF EIGHTEEN. ONLY ON PRESENTATION OF A VALI
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hjN-ZN-eun" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1554.375" y="2196.1267605633802"/>
+            <point key="canvasLocation" x="-1555" y="2380"/>
         </scene>
         <!--Permission For Calendar-->
         <scene sceneID="YBy-OS-Zx0">
@@ -4688,7 +4688,7 @@ ENTRY ALLOWED TO ADULTS OVER THE AGE OF EIGHTEEN. ONLY ON PRESENTATION OF A VALI
                                     <constraint firstAttribute="height" constant="52" id="Tqn-ZG-H9H"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FREE BOAT" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c97-5I-cZK">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="FREE BOAT" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c97-5I-cZK">
                                 <rect key="frame" x="44" y="46" width="530" height="23"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="23" id="KqQ-bv-TuD"/>
@@ -4809,10 +4809,10 @@ ENTRY ALLOWED TO ADULTS OVER THE AGE OF EIGHTEEN. ONLY ON PRESENTATION OF A VALI
                                 <color key="sectionIndexBackgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CommentCell" id="CCe-7f-Y3u">
-                                        <rect key="frame" x="0.0" y="22" width="320" height="60"/>
+                                        <rect key="frame" x="0.0" y="22" width="600" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CCe-7f-Y3u" id="YlO-mY-g5Y">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -4977,10 +4977,10 @@ ENTRY ALLOWED TO ADULTS OVER THE AGE OF EIGHTEEN. ONLY ON PRESENTATION OF A VALI
                                 <color key="sectionIndexBackgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CommentCell" id="yYE-xs-v5B">
-                                        <rect key="frame" x="0.0" y="22" width="320" height="60"/>
+                                        <rect key="frame" x="0.0" y="22" width="600" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yYE-xs-v5B" id="VGZ-PM-zLc">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -5143,10 +5143,10 @@ ENTRY ALLOWED TO ADULTS OVER THE AGE OF EIGHTEEN. ONLY ON PRESENTATION OF A VALI
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CommentCell" id="rkH-b4-LGN">
-                                        <rect key="frame" x="0.0" y="22" width="320" height="60"/>
+                                        <rect key="frame" x="0.0" y="22" width="600" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rkH-b4-LGN" id="W3J-M2-Oxf">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -5413,10 +5413,10 @@ ENTRY ALLOWED TO ADULTS OVER THE AGE OF EIGHTEEN. ONLY ON PRESENTATION OF A VALI
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CommentCell" id="u2z-zg-HfY">
-                                        <rect key="frame" x="0.0" y="22" width="320" height="60"/>
+                                        <rect key="frame" x="0.0" y="22" width="600" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="u2z-zg-HfY" id="Ejf-i4-HJb">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -5496,7 +5496,7 @@ ENTRY ALLOWED TO ADULTS OVER THE AGE OF EIGHTEEN. ONLY ON PRESENTATION OF A VALI
         <!--Sliding View Controller-->
         <scene sceneID="ONN-jX-BGE">
             <objects>
-                <viewController id="MRC-3S-e6z" customClass="ECSlidingViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="rootViewController" id="MRC-3S-e6z" customClass="ECSlidingViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="pi2-cf-FRR"/>
                         <viewControllerLayoutGuide type="bottom" id="MNv-xJ-FpY"/>

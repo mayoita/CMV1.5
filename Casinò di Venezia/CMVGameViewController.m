@@ -292,7 +292,7 @@ int Office;
             [self readButtonPress:@"ReadingSlot"];
             AVSpeechUtterance *utterance = [AVSpeechUtterance speechUtteranceWithString:self.textToBeRead];
             //utterance.voice = AVSpeechUtterance.AVSpeechSynthesisVoice.FromLanguage ("en-AU");
-            utterance.rate=AVSpeechUtteranceMaximumSpeechRate/8;
+            //utterance.rate=AVSpeechUtteranceMaximumSpeechRate/8;
             [self.synthesizer speakUtterance:utterance];
             talking = TRUE;
             self.speechButton.selected=FALSE;

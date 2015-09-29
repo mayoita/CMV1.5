@@ -26,7 +26,7 @@
 @property (strong, nonatomic)  NSString *eventMemo;
 @property (weak, nonatomic) IBOutlet UILabel *eventStartDate;
 @property (weak, nonatomic) IBOutlet UILabel *eventEndDate;
-@property (strong, nonatomic) CMVVoiceOpen *readDescription;
+@property (strong, nonatomic) UIImageView *readDescriptionS;
 
 @property (weak, nonatomic) IBOutlet UILabel *labelDescription;
 @property (strong,nonatomic)UILabel *labelForPoker;

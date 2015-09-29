@@ -24,7 +24,7 @@ static float exchangeRates;
 
 -(id)init{
     self = [super init];
-
+    
     _currencyCode = [[NSLocale currentLocale] objectForKey:NSLocaleCurrencyCode];
  
     return self;

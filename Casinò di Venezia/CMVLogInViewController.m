@@ -13,9 +13,10 @@
 #import "MySignUpViewController.h"
 #import <Parse/Parse.h>
 #import "CMVGreenButton.h"
-#import <FBSDKCoreKit/FBSDKGraphRequest.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <ParseFacebookUtilsV4/PFFacebookUtils.h>
-
+#import <ParseTwitterUtils/ParseTwitterUtils.h>
+#import "CMVAppDelegate.h"
 
 
 @interface CMVLogInViewController ()
@@ -59,10 +60,17 @@ NSString *myName;
     if (![PFUser currentUser]) { // No user logged in
         // Create the log in view controller
         MyLogInViewController *logInViewController = [[MyLogInViewController alloc] init];
+       
         [logInViewController setDelegate:self];
         
         
-        logInViewController.fields=PFLogInFieldsUsernameAndPassword | PFLogInFieldsLogInButton | PFLogInFieldsTwitter | PFLogInFieldsFacebook | PFLogInFieldsSignUpButton | PFLogInFieldsPasswordForgotten | PFLogInFieldsDismissButton;
+        logInViewController.fields=PFLogInFieldsUsernameAndPassword
+        | PFLogInFieldsLogInButton
+        | PFLogInFieldsTwitter
+        | PFLogInFieldsFacebook
+        | PFLogInFieldsSignUpButton
+        | PFLogInFieldsPasswordForgotten
+        | PFLogInFieldsDismissButton;
         // Set permissions required from the facebook user account
         NSArray *permissionsArray = @[ @"user_about_me", @"user_birthday", @"user_location", @"email"];
        
@@ -86,7 +94,7 @@ NSString *myName;
     
     id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
     [tracker set:kGAIScreenName value:@"LogIn"];
-    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
+    [tracker send:[[GAIDictionaryBuilder createScreenView] build]];
     
     if ([PFUser currentUser]) {
         // If the user is logged in, show their name in the welcome label.
@@ -101,9 +109,14 @@ NSString *myName;
         } else if ([PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]) {
             // If user is linked to Facebook, we'll use the Facebook Graph API to fetch their full name. But first, show a generic Welcome label.
             self.welcomeLabel.text =[NSString stringWithFormat:NSLocalizedString(@"Welcome\n ", nil)];
-            
+            CMVAppDelegate *appDelegate=(CMVAppDelegate *)[UIApplication sharedApplication].delegate;
+            if (appDelegate.appOpen) {
+                [self updateProfile];
+            } else {
+
+            NSDictionary* parameters = @{@"fields": @"id, name, email, location "};
             // Create Facebook Request for user's details
-            FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:nil];
+            FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:parameters];
             [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
                 // This is an asynchronous method. When Facebook responds, if there are no errors, we'll update the Welcome label.
                 if (!error) {
@@ -146,7 +159,8 @@ NSString *myName;
         
                 }
             }];
-            
+        }
+        
         } else {
             // If user is linked to neither, let's use their username for the Welcome label.
             self.welcomeLabel.text =[NSString stringWithFormat:NSLocalizedString(@"Welcome\n %@", nil), [PFUser currentUser].username];
@@ -335,11 +349,29 @@ NSString *myName;
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
     // As chuncks of the image are received, we build our data file
     [self.imageData appendData:data];
+
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     // All data has been downloaded, now we can set the image in the header image view
     self.pictureImageView.image = [UIImage imageWithData:self.imageData];
+    PFFile *imageFile = [PFFile fileWithName:@"Image.jpg" data:self.imageData];
+    [imageFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (!error) {
+            // The image has now been uploaded to Parse. Associate it with a new object
+            [[PFUser currentUser] setObject:imageFile forKey:@"image"];
+            
+            [[PFUser currentUser] saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                if (!error) {
+                    NSLog(@"Saved");
+                }
+                else{
+                    // Error
+                    NSLog(@"Error: %@ %@", error, [error userInfo]);
+                }
+            }];
+        }
+    }];
     self.pictureImageView.alpha = 1.0;
     
     // Add a nice corner radius to the image

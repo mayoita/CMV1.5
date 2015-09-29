@@ -7,7 +7,6 @@
 //
 
 #import "CMVHomeViewController.h"
-#import "Helpshift.h"
 #import <Parse/Parse.h>
 #import "DVOMarqueeView.h"
 #import "CMVSetUpCurrency.h"
@@ -175,7 +174,7 @@ PFObject *storageFestivity;
     }
     id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
     [tracker set:kGAIScreenName value:value];
-    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
+    [tracker send:[[GAIDictionaryBuilder createScreenView] build]];
     
     [self.mainTabBarController setCenterButtonDelegate:self];
     [self setOffice];
@@ -304,7 +303,10 @@ PFObject *storageFestivity;
 
 - (IBAction)openHelp:(id)sender {
     [self infoButtonPress:@"HelpSfhift"];
+  
     [[Helpshift sharedInstance] showConversation:self withOptions:nil];
+    //[[Helpshift sharedInstance] showFAQs:self
+                            // withOptions:@{@"enableContactUs":@"ALWAYS"}];
     
 }
 

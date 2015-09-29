@@ -535,7 +535,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
                 [self readButtonPress:@"ReadingGame"];
                 AVSpeechUtterance *utterance = [AVSpeechUtterance speechUtteranceWithString:[NSString stringWithString:self.textView.text]];
                 
-                utterance.rate=AVSpeechUtteranceMaximumSpeechRate/8;
+                //utterance.rate=AVSpeechUtteranceMaximumSpeechRate/8;
                 [self.synthesizer speakUtterance:utterance];
                 talking = TRUE;
                 self.readDescription.selected=FALSE;
@@ -546,6 +546,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
         
     }
 }
+
 
 -(void)readButtonPress:(NSString *)type{
     
